@@ -1,0 +1,1 @@
+yo hyperledger-composer:angular
