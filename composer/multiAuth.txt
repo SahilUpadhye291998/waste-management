@@ -1,0 +1,28 @@
+export COMPOSER_PROVIDERS='{
+  "github": {
+    "provider": "github",
+    "module": "passport-github",
+    "clientID": "ca92b6788460e73102ef",
+    "clientSecret": "eb134464b8ae3f8965d6c42c2ce8533dd8097254",
+    "authPath": "/auth/github",
+    "callbackURL": "/auth/github/callback",
+    "successRedirect": "/",
+    "failureRedirect": "/"
+  }
+}'
+
+
+composer particiapant add -c admin@waste_v3 -d '{
+  "$class": "org.example.mynetwork.RetailStore",
+  "businessID": "Retail:001",
+  "businessName": "Shivam",
+  "businessEmail": "shivam@gmail.com",
+  "businessPhone": "1234567890",
+  "address": {
+    "$class": "org.example.mynetwork.Address",
+    "state": "Gujarat",
+    "city": "Ahmedabad",
+    "country": "India",
+    "pincode": "380022"
+  }
+}'

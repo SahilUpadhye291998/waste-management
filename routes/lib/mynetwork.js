@@ -4,7 +4,7 @@ const FileSystemCardStore = require('composer-common').FileSystemCardStore;
 const BusinessNetworkCardStore = require('composer-common').BusinessNetworkCardStore;
 const AdminConnection = require('composer-admin').AdminConnection;
 
-var fileSystemCardStore = new FileSystemCardStore();
+// var fileSystemCardStore = new FileSystemCardStore();
 var businessNetworkCardStore = new BusinessNetworkCardStore();
 var adminConnection = new AdminConnection();
 
@@ -23,7 +23,7 @@ class MyNetwork {
             return BusinessNetworkCardStore.getDefaultCardName(idCardData)
         }).then(function (idCardName) {
             _idCardName = idCardName;
-            return fileSystemCardStore.put(_idCardName, _idCardData)
+            return businessNetworkCardStore.put(_idCardName, _idCardData)
         }).then(function (result) {
             return adminConnection.importCard(_idCardName, _idCardData);
         }).then(function (imported) {
@@ -64,3 +64,5 @@ class MyNetwork {
     }
 
 }
+
+module.exports = MyNetwork;
