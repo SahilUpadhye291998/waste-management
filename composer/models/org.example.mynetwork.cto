@@ -35,7 +35,7 @@ abstract participant Person identified by personID {
 }
 
 participant RetailStore extends Business {
-  // o Product[] product
+  o Product[] product
 }
 
 participant Company extends Business {
@@ -60,6 +60,7 @@ asset Product identified by productID {
   o String productName
   o Double EstimatedProductPrice
   o Boolean isCompleted
+  o ShipmentStatus shipmentStatus
   --> Customer customer
   --> Logistics logistics
   --> Trucker trucker

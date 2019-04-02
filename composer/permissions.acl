@@ -15,100 +15,137 @@
  /**
  * Basic testing rule for ewaste-management
  */
-
-rule CustomerWillNotBeAbleToAlterRecored{
-  description:"Customers will not be able to alter the Recored for the specific reward"
-  participant:"org.example.mynetwork.Customer"
-  operation:ALL
-  resource:"org.example.mynetwork.Product"
-  action:DENY
+rule RetailerCanSeeOnlyTheirDetails {
+  description: "Retails will be ble to see only their details"
+  participant(p): "org.example.mynetwork.RetailStore"
+  operation: READ, UPDATE
+  resource(r): "org.example.mynetwork.RetailStore"
+  condition: (p.getIdentifier() === r.getIdentifier())
+  action: ALLOW
 }
 
-rule CustomerCantDelete{
-  description:"Customers will not be able to Delete any assest related to the company"
-  participant:"org.example.mynetwork.Customer"
-  operation:ALL
-  resource:"org.hyperledger.composer.system.Asset"
-  action:DENY
+rule LogisticsCanSeeOnlyTheirDetails {
+  description: "Logistics will be ble to see only their details"
+  participant(p): "org.example.mynetwork.Logistics"
+  operation: READ, UPDATE
+  resource(r): "org.example.mynetwork.Logistics"
+  condition: (p.getIdentifier() === r.getIdentifier())
+  action: ALLOW
 }
 
-//rule of what a Customer can do
-
-rule LogisticsCantDelete{
-  description:"Logistics cant delete the Product"
-  participant:"org.example.mynetwork.Logistics"
-  operation:CREATE,DELETE
-  resource:"org.example.mynetwork.Product"
-  action:DENY
+rule CompanyCanSeeOnlyTheirDetails {
+  description: "Company will be ble to see only their details"
+  participant(p): "org.example.mynetwork.Company"
+  operation: READ, UPDATE
+  resource(r): "org.example.mynetwork.Company"
+  condition: (p.getIdentifier() === r.getIdentifier())
+  action: ALLOW
 }
 
-rule LogisticsCantDelete_WareHouse{
-  description:"Logistics cant delete the WareHouse"
-  participant:"org.example.mynetwork.Logistics"
-  operation:CREATE,DELETE
-  resource:"org.example.mynetwork.WareHouse"
-  action:DENY
+rule CustomerCanSeeOnlyTheirDetails {
+  description: "Customer will be ble to see only their details"
+  participant(p): "org.example.mynetwork.Customer"
+  operation: READ, UPDATE
+  resource(r): "org.example.mynetwork.Customer"
+  condition: (p.getIdentifier() === r.getIdentifier())
+  action: ALLOW
 }
 
-rule Logistics {
-  description: "Function that can be done by Logistics"
+rule RetailerWillBeAbleToCreateAndReadOnlyTheirProducts {
+  description: "Retailer Will be able to create and read only their product"
+  participant(p): "org.example.mynetwork.RetailStore"
+  operation: CREATE, READ
+  resource(r): "org.example.mynetwork.Product"
+  condition: (p.retailStore.getIdentifier() === r.getIdentifier())
+  action: ALLOW
+}
+
+rule CustomerWillBeAbleToReadOnlyTheirProducts {
+  description: "Customer Will be able to create and read only their product"
+  participant(p): "org.example.mynetwork.Customer"
+  operation: READ
+  resource(r): "org.example.mynetwork.Product"
+  condition: (p.customer.getIdentifier() === r.getIdentifier())
+  action: ALLOW
+}
+
+rule CompanyWillBeAbleToDoAnyThingTheirProducts {
+  description: "Company Will be able to Do any thing to their product"
+  participant(p): "org.example.mynetwork.Company"
+  operation: ALL
+  resource(r): "org.example.mynetwork.Product"
+  condition: (p.company.getIdentifier() === r.getIdentifier())
+  action: ALLOW
+}
+
+rule TruckerWillNotBeAbleToDoAnyThingTheirProducts {
+  description: "Trucker Will be able to Do any thing to their product"
+  participant: "org.example.mynetwork.Trucker"
+  operation: ALL
+  resource: "org.example.mynetwork.Product"
+  action: ALLOW
+}
+
+rule LogisticesWillBeableToUpdate{
+   description: "Only logistices will be able to update the specific transaction"
   participant: "org.example.mynetwork.Logistics"
   operation: UPDATE
-  resource: "org.example.mynetwork.Product"
+  resource: "org.example.mynetwork.ChangeShipmentStatus"
   action: ALLOW
 }
 
-
-//change this rule for the logistics specific deletetion of truck
-rule Logistics_Assest{
-  description: "Logistics can add Logistics asset that is Truck"
+rule LogisticesWillBeableToCreateTruck{
+   description: "Only logistices will be able to create TRUCK"
   participant: "org.example.mynetwork.Logistics"
-  operation: ALL
-  resource: "org.example.mynetwork.Truck"
-  action: ALLOW  
+  operation: UPDATE
+  resource: "org.example.mynetwork.AddTruck"
+  action: ALLOW
 }
 
-rule Company_Logistics {
-  description: "Restriction on the company to truck of logistics"
+rule LogisticesWillBeableToCreateTrucker{
+   description: "Only logistices will be able to create LogisticesWillBeableToCreateTrucker"
+  participant: "org.example.mynetwork.Logistics"
+  operation: UPDATE
+  resource: "org.example.mynetwork.AddTrucker"
+  action: ALLOW
+}
+
+rule CompanyWillBeableToAddWareHouse{
+   description: "Only Company will be able to Add Warehouse"
   participant: "org.example.mynetwork.Company"
-  operation: ALL
-  resource: "org.example.mynetwork.Truck"
+  operation: UPDATE
+  resource: "org.example.mynetwork.AddWareHouse"
   action: ALLOW
 }
 
-//change this rule for the Compamy specific CRUD of Product
-rule Company_product{
-  description: "Company can do annything they require to with Product"
+rule CompanyWillBeableToAddProductToWareHouse{
+   description: "Only Company will be able to Add Product to Warehouse"
   participant: "org.example.mynetwork.Company"
-  operation: ALL
-  resource: "org.example.mynetwork.Product"
+  operation: UPDATE
+  resource: "org.example.mynetwork.AddProductToWareHouse"
   action: ALLOW
 }
 
-rule RetailerCantSeeInfoOfLogistics{
-  description: "RetailStore cant CRUD Logistics"
-  participant: "org.example.mynetwork.RetailStore"
-  operation: ALL
-  resource: "org.example.mynetwork.Truck"
-  action: DENY
-}
-
-rule RetailerCantSeeInfoOfWareHouse{
-  description: "RetailStore cant CRUD WareHouse"
-  participant: "org.example.mynetwork.RetailStore"
-  operation: ALL
-  resource: "org.example.mynetwork.WareHouse"
-  action: DENY 
-}
-
-//RULE TO SEE ALL THE CUSTOMER info
-rule RetailerCanSeeInfoOfCustomer {
-  description: "Retailer can see info of customer"
-  participant: "org.example.mynetwork.RetailStore"
-  operation: ALL
-  resource: "org.example.mynetwork.Customer"
+rule CompanyWillBeableToUpdateComanyProduct{
+   description: "Only Company will be able to Add Update the product"
+  participant: "org.example.mynetwork.Company"
+  operation: UPDATE
+  resource: "org.example.mynetwork.UpdateComanyProduct"
   action: ALLOW
 }
+
+rule CompanyWillBeableToAfterCreation{
+   description: "Only Company will be able to Add After clearance"
+  participant: "org.example.mynetwork.Company"
+  operation: UPDATE
+  resource: "org.example.mynetwork.AfterCreation"
+  action: ALLOW
+}
+
+
+/*
+These are special cases
+*/
 
 rule SystemACL {
   description:  "System ACL to permit all access"
@@ -118,9 +155,6 @@ rule SystemACL {
   action: ALLOW
 }
 
-/*
-These are special cases
-*/
 
 rule NetworkAdminUser{
   description: "Grants network administator all the things that are related to USER resource"

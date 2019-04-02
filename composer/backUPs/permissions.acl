@@ -1,0 +1,141 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+ /**
+ * Basic testing rule for ewaste-management
+ */
+
+rule CustomerWillNotBeAbleToAlterRecored{
+  description:"Customers will not be able to alter the Recored for the specific reward"
+  participant:"org.example.mynetwork.Customer"
+  operation:ALL
+  resource:"org.example.mynetwork.Product"
+  action:DENY
+}
+
+rule CustomerCantDelete{
+  description:"Customers will not be able to Delete any assest related to the company"
+  participant:"org.example.mynetwork.Customer"
+  operation:ALL
+  resource:"org.hyperledger.composer.system.Asset"
+  action:DENY
+}
+
+//rule of what a Customer can do
+
+rule LogisticsCantDelete{
+  description:"Logistics cant delete the Product"
+  participant:"org.example.mynetwork.Logistics"
+  operation:CREATE,DELETE
+  resource:"org.example.mynetwork.Product"
+  action:DENY
+}
+
+rule LogisticsCantDelete_WareHouse{
+  description:"Logistics cant delete the WareHouse"
+  participant:"org.example.mynetwork.Logistics"
+  operation:CREATE,DELETE
+  resource:"org.example.mynetwork.WareHouse"
+  action:DENY
+}
+
+rule Logistics {
+  description: "Function that can be done by Logistics"
+  participant: "org.example.mynetwork.Logistics"
+  operation: UPDATE
+  resource: "org.example.mynetwork.Product"
+  action: ALLOW
+}
+
+
+//change this rule for the logistics specific deletetion of truck
+rule Logistics_Assest{
+  description: "Logistics can add Logistics asset that is Truck"
+  participant: "org.example.mynetwork.Logistics"
+  operation: ALL
+  resource: "org.example.mynetwork.Truck"
+  action: ALLOW  
+}
+
+rule Company_Logistics {
+  description: "Restriction on the company to truck of logistics"
+  participant: "org.example.mynetwork.Company"
+  operation: ALL
+  resource: "org.example.mynetwork.Truck"
+  action: ALLOW
+}
+
+//change this rule for the Compamy specific CRUD of Product
+rule Company_product{
+  description: "Company can do annything they require to with Product"
+  participant: "org.example.mynetwork.Company"
+  operation: ALL
+  resource: "org.example.mynetwork.Product"
+  action: ALLOW
+}
+
+rule RetailerCantSeeInfoOfLogistics{
+  description: "RetailStore cant CRUD Logistics"
+  participant: "org.example.mynetwork.RetailStore"
+  operation: ALL
+  resource: "org.example.mynetwork.Truck"
+  action: DENY
+}
+
+rule RetailerCantSeeInfoOfWareHouse{
+  description: "RetailStore cant CRUD WareHouse"
+  participant: "org.example.mynetwork.RetailStore"
+  operation: ALL
+  resource: "org.example.mynetwork.WareHouse"
+  action: DENY 
+}
+
+//RULE TO SEE ALL THE CUSTOMER info
+rule RetailerCanSeeInfoOfCustomer {
+  description: "Retailer can see info of customer"
+  participant: "org.example.mynetwork.RetailStore"
+  operation: ALL
+  resource: "org.example.mynetwork.Customer"
+  action: ALLOW
+}
+
+rule SystemACL {
+  description:  "System ACL to permit all access"
+  participant: "ANY"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}
+
+/*
+These are special cases
+*/
+
+rule NetworkAdminUser{
+  description: "Grants network administator all the things that are related to USER resource"
+  participant: "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL
+  resource: "**"
+  action: ALLOW
+}
+
+
+rule NetworkAdminSystem{
+  description: "Grants network administator all the things that are related to SYSTEM resource"
+  participant: "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}
+

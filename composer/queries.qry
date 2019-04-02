@@ -1,0 +1,87 @@
+query RecoredOfASpecificCustomer {
+  description: "This query will be able to get the specific address of the specifc customer"
+  statement: 
+    SELECT org.example.mynetwork.Product
+    WHERE (customer == _$customer)
+}
+
+query RecoredOfASpecificRetailer {
+  description: "This query will be able to get the specific address of the specifc customer"
+  statement: 
+    SELECT org.example.mynetwork.Product
+    WHERE (retailStore == _$retailStore)
+}
+
+query RecoredOfASpecificCompany {
+  description: "This query will be able to get the specific address of the specifc customer"
+  statement: 
+    SELECT org.example.mynetwork.Product
+    WHERE (company == _$company)
+}
+
+query ProductRelatedToWasteType {
+  description: "This query will be able to get the waste type"
+  statement: 
+    SELECT org.example.mynetwork.Product
+    WHERE (wasteType == _$wasteType)
+}
+
+query ProductThatareCompleted{
+  description:"This query will get all the completed product"
+  statement:
+    SELECT org.example.mynetwork.Product
+    WHERE (isCompleted == true)
+}
+
+query ProductName{
+ description:"This query will get name of the product"
+  statement:
+    SELECT org.example.mynetwork.Product
+    WHERE (productName == _$productName)
+}
+
+query ProductWasteTreatment {
+  description: "All the wasteTreatment done to product"
+  statement: 
+    SELECT org.example.mynetwork.Product
+    WHERE (wasteTreatment == _$wasteTreatment)
+}
+
+query ProductshipmentStatus {
+  description: "All the shipmentStatus done to product"
+  statement: 
+    SELECT org.example.mynetwork.Product
+    WHERE (shipmentStatus == _$shipmentStatus)
+}
+
+query RecoredOfASpecificProductAndCustomer {
+  description: "This query will be able to get the specific product related yto customer"
+  statement: 
+    SELECT org.example.mynetwork.Product
+    WHERE (customer == _$customer AND productID == _$productID)
+}
+
+query getAllCustomer {
+  description: "This query gets all te customer"
+  statement: 
+    SELECT org.example.mynetwork.Customer
+}
+
+query getAllLogistics {
+  description: "This query gets all te Logistics"
+  statement: 
+    SELECT org.example.mynetwork.Logistics
+}
+
+query getAllRetailStore {
+  description: "This query gets all te RetailStore"
+  statement: 
+    SELECT org.example.mynetwork.RetailStore
+}
+
+query getAllCompany {
+  description: "This query gets all te Company"
+  statement: 
+    SELECT org.example.mynetwork.Company
+}
+
