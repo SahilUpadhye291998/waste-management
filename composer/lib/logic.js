@@ -190,3 +190,121 @@ function changeShipmentStatus(changeShipmentStatus) {
 
         });
 }
+
+/**
+ * Sample transaction processor function.
+ * @param {org.example.mynetwork.LoginCompany} loginCompany The sample transaction instance.
+ * 
+ * @transaction
+ */
+function LoginCompany(loginCompany) {
+
+    // Save the old value of the asset.
+    var onBlockchainbusinessEmail = loginCompany.company.businessEmail;
+    var onBlockchainbusinessPasswd = loginCompany.company.businessPasswd;
+
+    var BusinessID = loginCompany.company.businessID;
+
+    var userInputBusinessEmail = loginCompany.businessEmail;
+    var userInputBusinessPasswd = loginCompany.businessPasswd;
+
+    if(onBlockchainbusinessEmail === userInputBusinessEmail & onBlockchainbusinessPasswd === userInputBusinessPasswd){
+        return BusinessID;
+    }else{
+        return  'LOGIN for the company failed';
+    }
+   
+}
+
+/**
+ * Sample transaction processor function.
+ * @param {org.example.mynetwork.LoginLogistics} loginLogistics The sample transaction instance.
+ * 
+ * @transaction
+ */
+function LoginLogistics(loginLogistics) {
+
+    // Save the old value of the asset.
+    var onBlockchainbusinessEmail = loginLogistics.logistics.businessEmail;
+    var onBlockchainbusinessPasswd = loginLogistics.logistics.businessPasswd;
+
+    var BusinessID = loginLogistics.Logistics.businessID;
+
+    var userInputBusinessEmail = loginLogistics.businessEmail;
+    var userInputBusinessPasswd = loginLogistics.businessPasswd;
+
+    if(onBlockchainbusinessEmail === userInputBusinessEmail & onBlockchainbusinessPasswd === userInputBusinessPasswd){
+        return BusinessID;
+    }else{
+        return  'LOGIN for the Logistics failed';
+    }
+   
+}
+
+/**
+ * Sample transaction processor function.
+ * @param {org.example.mynetwork.LoginRetailStore} loginRetailStore The sample transaction instance.
+ * 
+ * @transaction
+ */
+function LoginRetailStore(loginRetailStore) {
+
+    // Save the old value of the asset.
+    var onBlockchainbusinessEmail = loginRetailStore.retailStore.businessEmail;
+    var onBlockchainbusinessPasswd = loginRetailStore.retailStore.businessPasswd;
+
+    var BusinessID = loginRetailStore.RetailStore.businessID;
+
+    var userInputBusinessEmail = loginRetailStore.businessEmail;
+    var userInputBusinessPasswd = loginRetailStore.businessPasswd;
+
+    if(onBlockchainbusinessEmail === userInputBusinessEmail & onBlockchainbusinessPasswd === userInputBusinessPasswd){
+        return BusinessID;
+    }else{
+        return  'LOGIN for the RetailStore failed';
+    }
+   
+}
+
+/**
+ * Sample transaction processor function.
+ * @param {org.example.mynetwork.LoginCustomer} loginCustomer The sample transaction instance.
+ * 
+ * @transaction
+ */
+function LoginCustomer(loginCustomer) {
+
+    // Save the old value of the asset.
+    var onBlockchainbusinessEmail = loginCustomer.customer.businessEmail;
+    var onBlockchainbusinessPasswd = loginCustomer.customer.businessPasswd;
+
+    var BusinessID = loginCustomer.Customer.businessID;
+
+    var userInputBusinessEmail = loginCustomer.businessEmail;
+    var userInputBusinessPasswd = loginCustomer.businessPasswd;
+
+    if(onBlockchainbusinessEmail === userInputBusinessEmail & onBlockchainbusinessPasswd === userInputBusinessPasswd){
+        return BusinessID;
+    }else{
+        return  'LOGIN for the Customer failed';
+    }
+   
+}
+
+/**
+ * Sample transaction processor function.
+ * @param {org.example.mynetwork.TransferFunds} TransferFunds The sample transaction instance.
+ * 
+ * @transaction
+ */
+function TransferFunds(transferFunds) {
+
+    // Save the old value of the asset.
+    var productRewardAmount = transferFunds.product.estimatedRewardPrice;
+
+    transferFunds.customer.amount += productRewardAmount;
+
+    return getParticipantRegistry('org.example.mynetwork.Customer').then(function(customerRegistry){
+        return customerRegistry.update(transferFunds.customer);
+    });
+}

@@ -22,6 +22,7 @@ abstract participant Business identified by businessID {
   o String businessID
   o String businessName
   o String businessEmail
+  o String businessPasswd
   o String businessPhone
   o Address address
 }
@@ -30,6 +31,7 @@ abstract participant Person identified by personID {
   o String personID
   o String personName
   o String personEmail
+  o String personPasswd
   o String personPhone
   o Address address
 }
@@ -146,6 +148,39 @@ transaction AfterCreation  extends PRODUCT{
 
 transaction ChangeShipmentStatus extends SHIPPING_TRANSACTION {
   o ShipmentStatus shipmentStatus
+}
+
+@returns(String)
+transaction LoginCompany {
+  --> Company company
+  o String businessName
+  o String businessPasswd
+}
+
+@returns(String)
+transaction LoginLogistics {
+  --> Logistics logistics
+  o String businessName
+  o String businessPasswd
+}
+
+@returns(String)
+transaction LoginCustomer {
+  --> Customer customer
+  o String personName
+  o String personPasswd
+}
+
+@returns(String)
+transaction LoginRetailStore {
+  --> RetailStore retailStore
+  o String businessName
+  o String businessPasswd
+}
+
+transaction TransferFunds {
+  --> Product product
+  --> Customer customer 
 }
 
 transaction LoadDemoData {
