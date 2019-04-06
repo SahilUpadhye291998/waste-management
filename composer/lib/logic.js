@@ -293,7 +293,7 @@ function LoginCustomer(loginCustomer) {
 
 /**
  * Sample transaction processor function.
- * @param {org.example.mynetwork.TransferFunds} TransferFunds The sample transaction instance.
+ * @param {org.example.mynetwork.TransferFunds} transferFunds The sample transaction instance.
  * 
  * @transaction
  */
@@ -307,4 +307,26 @@ function TransferFunds(transferFunds) {
     return getParticipantRegistry('org.example.mynetwork.Customer').then(function(customerRegistry){
         return customerRegistry.update(transferFunds.customer);
     });
+}
+
+/**
+ * Sample transaction processor function.
+ * @param {org.example.mynetwork.SellProduct} sellProduct The sample transaction instance.
+ * 
+ * @transaction
+ */
+function SellProduct(sellProduct) {
+
+    if(transferFunds.customer.amount >= sellProduct.productPrice){
+        transferFunds.customer.amount -= sellProduct.productPrice;
+        return getParticipantRegistry('org.example.mynetwork.Customer').then(function(customerRegistry){
+            return customerRegistry.update(transferFunds.customer);
+        }).then(function(){
+            return "Amount has been deducted";
+        });
+        
+
+    }else{
+        return "Insufficient balance";
+    }
 }

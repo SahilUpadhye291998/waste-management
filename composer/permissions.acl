@@ -86,6 +86,14 @@ rule TruckerWillNotBeAbleToDoAnyThingTheirProducts {
   action: ALLOW
 }
 
+rule RetailerWillBeableToSellTheProduct{
+   description: "Only retailer will be Able to sell the product to the customer"
+  participant: "org.example.mynetwork.RetailStore"
+  operation: UPDATE
+  resource: "org.example.mynetwork.SellProduct"
+  action: ALLOW
+}
+
 rule LogisticesWillBeableToUpdate{
    description: "Only logistices will be able to update the specific transaction"
   participant: "org.example.mynetwork.Logistics"

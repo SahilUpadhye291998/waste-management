@@ -178,10 +178,17 @@ transaction LoginRetailStore {
   o String businessPasswd
 }
 
+@returns(String)
+transaction SellProduct {
+  --> Customer customer
+  o Double productPrice
+}
+
 transaction TransferFunds {
   --> Product product
   --> Customer customer 
 }
+
 
 transaction LoadDemoData {
 }
