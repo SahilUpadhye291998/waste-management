@@ -9,7 +9,7 @@ query RecoredOfASpecificRetailer {
   description: "This query will be able to get the specific address of the specifc customer"
   statement: 
     SELECT org.example.mynetwork.Product
-    WHERE (retailStore == _$retailStore)
+    WHERE (retailStore.businessID == _$retailStore)
 }
 
 query RecoredOfASpecificCompany {
@@ -58,7 +58,7 @@ query RecoredOfASpecificProductAndCustomer {
   description: "This query will be able to get the specific product related yto customer"
   statement: 
     SELECT org.example.mynetwork.Product
-    WHERE (customer == _$customer AND productID == _$productID)
+    WHERE (customer.personID == _$customer AND productID == _$productID)
 }
 
 query getAllCustomer {

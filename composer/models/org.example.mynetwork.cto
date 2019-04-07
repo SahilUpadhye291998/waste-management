@@ -153,28 +153,28 @@ transaction ChangeShipmentStatus extends SHIPPING_TRANSACTION {
 @returns(String)
 transaction LoginCompany {
   --> Company company
-  o String businessName
+  o String businessEmail
   o String businessPasswd
 }
 
 @returns(String)
 transaction LoginLogistics {
   --> Logistics logistics
-  o String businessName
+  o String businessEmail
   o String businessPasswd
 }
 
 @returns(String)
 transaction LoginCustomer {
   --> Customer customer
-  o String personName
+  o String personEmail
   o String personPasswd
 }
 
 @returns(String)
 transaction LoginRetailStore {
   --> RetailStore retailStore
-  o String businessName
+  o String businessEmail
   o String businessPasswd
 }
 
@@ -189,8 +189,9 @@ transaction TransferFunds {
   --> Customer customer 
 }
 
+@returns(String)
+transaction MyTransaction {
 
-transaction LoadDemoData {
 }
 
 event ShipmentHasArrived{
