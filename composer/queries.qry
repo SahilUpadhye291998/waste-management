@@ -85,3 +85,9 @@ query getAllCompany {
     SELECT org.example.mynetwork.Company
 }
 
+query getAllLoginDetailsOfCustomer {
+  description: "Get all the Login Deatils of the customer"
+  statement:
+    SELECT org.hyperledger.composer.system.HistorianRecord
+      WHERE (transactionType=='org.example.mynetwork.LoginCustomer')
+}

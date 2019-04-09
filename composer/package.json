@@ -3,7 +3,7 @@
     "composer": "^0.20.6"
   },
   "name": "waste_v3",
-  "version": "0.0.7",
+  "version": "0.0.14",
   "description": "This is secound waste management project",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/waste_v3.bna",
