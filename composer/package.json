@@ -19,21 +19,22 @@
   "email": "sahilsu1998@gmail.com",
   "license": "Apache-2.0",
   "devDependencies": {
+    "chai": "latest",
+    "chai-as-promised": "latest",
     "composer-admin": "^0.20.6",
     "composer-cli": "^0.20.6",
     "composer-client": "^0.20.6",
     "composer-common": "^0.20.6",
     "composer-connector-embedded": "^0.20.6",
     "composer-cucumber-steps": "^0.20.6",
-    "chai": "latest",
-    "chai-as-promised": "latest",
     "cucumber": "^2.2.0",
     "eslint": "latest",
-    "nyc": "latest",
     "mkdirp": "latest",
-    "mocha": "latest"
+    "mocha": "^6.1.2",
+    "nyc": "latest"
   },
   "dependencies": {
+    "create-react-app": "^2.1.8",
     "express": "^4.16.4"
   }
 }

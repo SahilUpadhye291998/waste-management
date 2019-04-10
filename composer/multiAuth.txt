@@ -1,15 +1,4 @@
-export COMPOSER_PROVIDERS='{
-  "github": {
-    "provider": "github",
-    "module": "passport-github",
-    "clientID": "ca92b6788460e73102ef",
-    "clientSecret": "eb134464b8ae3f8965d6c42c2ce8533dd8097254",
-    "authPath": "/auth/github",
-    "callbackURL": "/auth/github/callback",
-    "successRedirect": "/",
-    "failureRedirect": "/"
-  }
-}'
+export COMPOSER_PROVIDERS='{"github": { "provider": "github","module": "passport-github","clientID": "ca92b6788460e73102ef","clientSecret": "eb134464b8ae3f8965d6c42c2ce8533dd8097254","authPath": "/auth/github","callbackURL": "/auth/github/callback","successRedirect": "/","failureRedirect": "/"}}'
 
 
 composer particiapant add -c admin@waste_v3 -d '{
