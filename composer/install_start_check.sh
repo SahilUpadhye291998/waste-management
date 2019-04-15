@@ -1,10 +1,10 @@
-composer network install --card PeerAdmin@hlfv1 --archiveFile waste_v3@0.0.16.bna
+composer network install --card PeerAdmin@hlfv1 --archiveFile waste_v3@0.0.18.bna
 
 echo "====================================================="
 echo "                Network is installed"
 echo "====================================================="
 
-composer network start --networkName waste_v3 --networkVersion 0.0.16 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+composer network start --networkName waste_v3 --networkVersion 0.0.18 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
 
 echo "====================================================="
 echo "                Network is started"

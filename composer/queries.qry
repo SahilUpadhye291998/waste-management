@@ -89,6 +89,12 @@ query RecoredOfASpecificProductAndShipment {
     WHERE (product == _$product)
 }
 
+query RecoredOfASpecificShipmentLogistics {
+  description: "This query will be able to get the specific Logistics"
+  statement: 
+    SELECT org.example.mynetwork.Shipment
+    WHERE (logistics == _$logistics)
+}
 
 query getAllCustomer {
   description: "This query gets all te customer"

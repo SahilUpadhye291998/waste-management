@@ -92,6 +92,7 @@ asset WareHouse identified by wareHouseID {
 }
 
 asset Shipment identified by ShipmentID {
+  --> Logistics logistics
   o String ShipmentID
   o WasteType wasteType
   o ShipmentStatus shipmentStatus
