@@ -72,8 +72,23 @@ query RecoredOfASpecificProductAndCustomer {
   description: "This query will be able to get the specific product related yto customer"
   statement: 
     SELECT org.example.mynetwork.Product
-    WHERE (customer.personID == _$customer AND productID == _$productID)
+    WHERE (customer == _$customer AND productID == _$productID)
 }
+
+
+query RecoredOfAllShipment {
+  description: "This query will be able to get the All Shipment"
+  statement: 
+    SELECT org.example.mynetwork.Shipment
+}
+
+query RecoredOfASpecificProductAndShipment {
+  description: "This query will be able to get the specific product and Shipment"
+  statement: 
+    SELECT org.example.mynetwork.Shipment
+    WHERE (product == _$product)
+}
+
 
 query getAllCustomer {
   description: "This query gets all te customer"
@@ -104,4 +119,39 @@ query getAllLoginDetailsOfCustomer {
   statement:
     SELECT org.hyperledger.composer.system.HistorianRecord
       WHERE (transactionType=='org.example.mynetwork.LoginCustomer')
+}
+
+query getAllLoginDetailsOfRetailStore {
+  description: "Get all the Login Deatils of the RetailStore"
+  statement:
+    SELECT org.hyperledger.composer.system.HistorianRecord
+      WHERE (transactionType=='org.example.mynetwork.LoginRetailStore')
+}
+
+query getAllLoginDetailsOfLogistics {
+  description: "Get all the Login Deatils of the Logistics"
+  statement:
+    SELECT org.hyperledger.composer.system.HistorianRecord
+      WHERE (transactionType=='org.example.mynetwork.LoginLogistics')
+}
+
+query getAllLoginDetailsOfCompany {
+  description: "Get all the Login Deatils of the Company"
+  statement:
+    SELECT org.hyperledger.composer.system.HistorianRecord
+      WHERE (transactionType=='org.example.mynetwork.LoginCompany')
+}
+
+query getAllTransactionDetailsOfCompany {
+  description: "Get all the Transaction Deatils of the Company"
+  statement:
+    SELECT org.hyperledger.composer.system.HistorianRecord
+      WHERE (transactionType=='org.example.mynetwork.AddWareHouse' OR transactionType=='org.example.mynetwork.AfterCreation' OR transactionType=='org.example.mynetwork.LoginCompany')
+}
+
+query getAllTransactionDetailsOfLogistics {
+  description: "Get all the transation Deatils of the Logistics"
+  statement:
+    SELECT org.hyperledger.composer.system.HistorianRecord
+      WHERE (transactionType=='org.example.mynetwork.AddTrucker' OR transactionType=='org.example.mynetwork.AddTruck' OR transactionType=='org.example.mynetwork.ChangeShipmentStatus' OR transactionType=='org.example.mynetwork.LoginLogistics')
 }
