@@ -9,7 +9,7 @@ query RecoredOfASpecificRetailer {
   description: "This query will be able to get the specific address of the specifc customer"
   statement: 
     SELECT org.example.mynetwork.Product
-    WHERE (retailStore.businessID == _$retailStore)
+    WHERE (retailStore == _$retailStore)
 }
 
 query RecoredOfASpecificCompany {
@@ -17,6 +17,20 @@ query RecoredOfASpecificCompany {
   statement: 
     SELECT org.example.mynetwork.Product
     WHERE (company == _$company)
+}
+
+query RecoredOfASpecificLogistics {
+  description: "This query will be able to get the specific address of the specifc customer"
+  statement: 
+    SELECT org.example.mynetwork.Product
+    WHERE (logistics == _$logistics)
+}
+
+query RecoredOfASpecificTrucker {
+  description: "This query will be able to get the specific address of the specifc customer"
+  statement: 
+    SELECT org.example.mynetwork.Product
+    WHERE (trucker == _$trucker)
 }
 
 query ProductRelatedToWasteType {
